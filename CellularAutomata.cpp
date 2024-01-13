@@ -7,9 +7,9 @@
 #include <thread>
 #include <windows.h>
 #include <vector>
+#include <string>
 
-
-int main(int argc,char* argv[])
+int main(int argc,char** argv)
 {
 	int rule;
 	int totalSize = 100;
@@ -20,13 +20,20 @@ int main(int argc,char* argv[])
 
 	if (argc == 2) 
 	{
-		rule = std::stoi(argv[1]);
+		rule = std::stoi(std::string(argv[1]));
 	}
 	else 
 	{
 		std::cout << "RULE : ";
+		std::cin >> rule;
 	}
-	std::cin >> rule;
+
+	if (0 > rule || rule > 255) 
+	{
+		std::cout<<std::endl<<"Invalid Rule";
+		exit(-1);
+	}
+
 
 	for (int i = 0; rule != 0; rule/=2, i++) 
 	{
